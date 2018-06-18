@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Repositories;
 
+use App\Eloquent\User;
 use App\Contracts\Repositories\LogReputationRepository;
 
 interface UserRepository extends AbstractRepository
@@ -47,4 +48,6 @@ interface UserRepository extends AbstractRepository
         $logType,
         LogReputationRepository $logReputationRepository
     );
+
+    public function setRole(User $user, $data);
 }

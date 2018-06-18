@@ -21,6 +21,7 @@ use App\Exceptions\Api\NotFoundException;
 use App\Exceptions\Api\UnknownException;
 use Log;
 use Mockery\Exception;
+use App\Events\NotificationHandler;
 
 class UserRepositoryEloquent extends AbstractRepositoryEloquent implements UserRepository
 {
@@ -87,7 +88,6 @@ class UserRepositoryEloquent extends AbstractRepositoryEloquent implements UserR
                     'avatar' => $userFromAuthServer['avatar'],
                     'office_id' => $userOfficeId,
                     'employee_code' => $userFromAuthServer['employee_code'],
-                    'role' => config('settings.user'),
                 ]);
             }
         } else {
@@ -511,5 +511,21 @@ class UserRepositoryEloquent extends AbstractRepositoryEloquent implements UserR
         $user->reputation_point = $user->reputation_point + $point;
         $user->save();
         $logReputationRepository->addLog($logId, $logType, $point);
+    }
+
+    public function setRole(User $user, $data)
+    {
+    	$user->update(['role' => $data]);
+        Event::fire('androidNotification', config('model.notification.set_role'));
+        $message = sprintf(translate('notification.set_role'), $this->user->name, $data);
+        event(new NotificationHandler($message, $user->id, config('model.notification.set_role')));
+        Event::fire('notification', [
+            [
+                'current_user_id' => $this->user->id,
+                'get_user_id' => $user->id,
+                'target_id' => $user->id,
+                'type' => config('model.notification.set_role'),
+            ]
+        ]);
     }
 }

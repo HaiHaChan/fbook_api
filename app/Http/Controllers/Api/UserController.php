@@ -255,4 +255,13 @@ class UserController extends ApiController
 
         return $this->jsonRender();
     }
+
+    public function setRole($id, $role)
+    {
+        return $this->doAction(function () use ($id, $role) {
+            $user = $this->repository->findOrfail($id);
+
+            $this->repository->setRole($user, $role);
+        }, __FUNCTION__);
+    }
 }

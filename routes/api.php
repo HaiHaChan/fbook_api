@@ -100,6 +100,7 @@ Route::group(['prefix' => 'v0', 'as' => 'api.v0.', 'namespace' => 'Api'], functi
         Route::post('categories/search', ['as' => 'categories.search', 'uses' => 'CategoryController@searchCategoryByName']);
         Route::get('users', 'UserController@getUserList');
         Route::post('users/search', 'UserController@searchUser');
+        Route::post('users/{id}/{role}', 'UserController@setRole');
         Route::get('users/detail/{id}', 'UserController@getUserDetail');
         Route::get('books', 'BookController@getBookList');
         Route::post('books/search', 'BookController@searchAdmin');

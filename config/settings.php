@@ -81,5 +81,6 @@ return [
         'hoang.viet.an@framgia.com'
     ],
     'admin' => 'admin',
+    'librarian' => 'librarian',
     'user' => 'user',
 ];
