@@ -113,6 +113,8 @@ return [
         ],
         'follow' => 'follow',
         'set_role' => 'set_role',
+        'owner_prompt' => 'owner_prompt',
+        'user_prompt' => 'user_prompt'
     ],
     'review_messeges' => [
         'can_not_vote' => 'can_not_vote',
@@ -158,5 +160,9 @@ return [
     ],
     'post' => [
         'limit' => 5,
+    ],
+    'prompt' => [
+        'time' => '-5 days',
+        'loop_time' => '0 3 * * *',
     ],
 ];

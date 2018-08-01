@@ -2,7 +2,9 @@
 
 namespace App\Eloquent;
 
-class BookUser extends AbstractEloquent
+use Illuminate\Database\Eloquent\Model;
+
+class BookUser extends Model
 {
     protected $table = 'book_user';
 

@@ -37,3 +37,7 @@ Config API_CLIENT_SECRET and API_CLIENT_id in .env
 ```
 $ ./vendor/bin/phpunit
 ```
+
+## Setting Crontab
+$ crontab -e
+`In last line, add a command: 0 0 1 * * php ~/<path-of-project>/artisan schedule:run >> /dev/null 2>&1`

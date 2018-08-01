@@ -52,6 +52,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Contracts\Repositories\PostRepository::class,
             \App\Repositories\PostRepositoryEloquent::class,
         ],
+        'book_user' => [
+            \App\Contracts\Repositories\BookUserRepository::class,
+            \App\Repositories\BookUserRepositoryEloquent::class,
+        ],
 
     ];
 
